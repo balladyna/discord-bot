@@ -13,7 +13,8 @@ class Scraper:
     def download_page(self):
         try:
             with open(self._create_file_path(), 'wb+') as web_page:
-                html = web_page.write(requests.get(self.url).content)
+                html = requests.get(self.url)
+                html_file = web_page.write(html.content)
                 return html
         except (ValueError, AttributeError, EOFError, OverflowError, FileNotFoundError) as error:
             logging.error('Downloading page', error)
@@ -28,7 +29,7 @@ class Scraper:
     def _create_directory(self):
         try:
             parent_directory = os.getcwd()
-            web_directory = 'scripts'
+            web_directory = 'web_data'
             path = os.path.join(parent_directory, web_directory)
             if not self._is_directory_exist(path):
                 os.mkdir(path)
@@ -36,9 +37,6 @@ class Scraper:
         except FileExistsError as error:
             logging.error('Create directory', error)
 
-    def _is_directory_exist(self, directory_path):
+    @staticmethod
+    def _is_directory_exist(directory_path):
         return os.path.exists(directory_path)
-
-
-url = Scraper('http://www.wykop.pl')
-url.download_page()
