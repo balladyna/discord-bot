@@ -10,9 +10,10 @@ class Harvester:
     def get_quote(self):
         tree = self.get_tree_page()
         quote = tree.xpath('(//div[@id="mw-content-text"]//ul//li)[1]/text()')
-        return quote[1]
+        return quote[0]
 
     def get_tree_page(self):
         page = self.url.download_page()
         tree = html.fromstring(page.content)
         return tree
+
