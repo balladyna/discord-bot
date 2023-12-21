@@ -1,3 +1,4 @@
+import datetime
 import messages
 from harvester import *
 
@@ -13,6 +14,8 @@ def handle_response(user_message) -> str:
         return get_reply()
     elif p_message == '!życie':
         return messages.special_message
+    elif p_message == '!data':
+        return str(datetime.datetime.now())
     elif p_message == '!help':
         return messages.help_message
     return messages.unknown_command

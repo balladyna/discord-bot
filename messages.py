@@ -14,3 +14,4 @@ help_message = ("W celu wylosowania cytatu użyj komendy '!cytat', jeżeli chces
 
 unknown_command = "Nie rozumiem Twojej wiadomości, użyj komendy '!help'."
 greetings = "Siemanko!"
+
